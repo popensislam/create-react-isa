@@ -18,15 +18,13 @@ export function buildWebpackConfig(options: BuildOptions): Configuration {
       filename: '[name].[contenthash].js',
       path: paths.build,
       clean: true,
+      publicPath: '/'
     },
     plugins: buildPlugins(options),
     module: { rules: buildLoaders(options) },
-    resolve: buildResolves(),
+    resolve: buildResolves(options),
     devtool: isDev ? 'inline-source-map' : undefined,
     devServer: isDev ? buildDevServer(options) : undefined,
-    //   maxEntrypointSize: 512000,
-    //   maxAssetSize: 512000
-    // },
     performance: { hints: false }
   };
 }
