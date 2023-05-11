@@ -31,6 +31,7 @@ export function buildPlugins(options: BuildOptions): webpack.WebpackPluginInstan
         'ts',
         'tsx' ]
     }),
+    new webpack.DefinePlugin({ 'process.env': JSON.stringify(process.env) })
   ];
 
   if (isDev) {
