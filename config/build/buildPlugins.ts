@@ -31,8 +31,12 @@ export function buildPlugins(options: BuildOptions): webpack.WebpackPluginInstan
         'ts',
         'tsx' ]
     }),
-    isDev && new ReactRefreshWebpackPlugin()
+    new webpack.DefinePlugin({ 'process.env': JSON.stringify(process.env), }),
   ];
 
-  return plugins.filter(Boolean);
+  if (isDev) {
+    plugins.push(new ReactRefreshWebpackPlugin());
+  }
+
+  return plugins;
 }
